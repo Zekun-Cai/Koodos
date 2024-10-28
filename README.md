@@ -2,7 +2,7 @@
 
 This repository contains the official code and datasets presented in our paper, "Continuous Temporal Domain Generalization", accepted by the Thirty-Eighth Annual Conference on Neural Information Processing Systems (NeurIPS 2024).
 
-For a detailed explanation of the framework, please refer to the paper. [![Arxiv link](https://img.shields.io/static/v1?label=arXiv&message=CTDG&color=red&logo=arxiv)](https://arxiv.org/abs/2405.16075) [![OpenReview link](https://img.shields.io/static/v1?label=OpenReview&message=CTDG&color=blue&logo=OpenReview)](xxx) [![Conference Proceedings](https://img.shields.io/static/v1?label=Proceedings&message=NeurIPS%202024&color=green&logo=proceedings)](xxx)
+For a detailed explanation of the framework, please refer to the paper. [![Arxiv link](https://img.shields.io/static/v1?label=arXiv&message=CTDG&color=red&logo=arxiv)](https://arxiv.org/abs/2405.16075)
 
 ## Abstract
 Temporal Domain Generalization (TDG) addresses the challenge of training predictive models under temporally varying domain data distributions. Traditional TDG approaches focus on domains collected at fixed, discrete time intervals, which limits their capability to capture the inherent dynamics within continuous-evolving and irregularly-observed temporal domains. This work formalizes the concept of Continuous Temporal Domain Generalization (CTDG), where domains are derived from continuous times and are collected at arbitrary times. We also propose Koodos to model and optimize the CTDG problem.
