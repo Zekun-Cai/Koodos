@@ -5,7 +5,7 @@ This repository contains the official code and datasets presented in our paper, 
 For a detailed explanation of the framework, please refer to the paper. [![Arxiv link](https://img.shields.io/static/v1?label=arXiv&message=CTDG&color=red&logo=arxiv)](https://arxiv.org/abs/2405.16075)
 
 ## Abstract
-Temporal Domain Generalization (TDG) addresses the challenge of training predictive models under temporally varying domain data distributions. Traditional TDG approaches focus on domains collected at fixed, discrete time intervals, which limits their capability to capture the inherent dynamics within continuous-evolving and irregularly-observed temporal domains. This work formalizes the concept of Continuous Temporal Domain Generalization (CTDG), where domains are derived from continuous times and are collected at arbitrary times. We also propose Koodos to model and optimize the CTDG problem.
+Temporal Domain Generalization (TDG) traditionally deals with training models on domains collected at fixed time intervals, limiting their ability to handle continuously evolving, irregular temporal domains. This work introduces Continuous Temporal Domain Generalization (CTDG) and presents Koodos, a model designed to address and optimize this challenge. 
 
 The code and instructions for reproducing the results are provided in this repository.
 
