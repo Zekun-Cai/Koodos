@@ -1,4 +1,4 @@
-<h1 align="center">[NeurIPS 2024] Continuous Temporal Domain Generalization</h1>
+<h1 align="center">[NeurIPS 24] Continuous Temporal Domain Generalization</h1>
 
 This repository contains the official code and datasets presented in our paper, "Continuous Temporal Domain Generalization", accepted by the Thirty-Eighth Annual Conference on Neural Information Processing Systems (NeurIPS 2024).
 
