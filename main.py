@@ -10,42 +10,46 @@ import shutil
 import argparse
 from datetime import datetime
 
-import torch
-
 from koodos import *
 from util import *
 from param import *
 
 
 def trainModel(X_train, Y_train, time_train):
-
+    # To avoid time consumption and cumulative errors in integrating long sequences,
+    # we divide the domain sequence into segments by sliding window with no longer than seg_len and integrate each segment separately.
     train_domain_seg = []
     for idx in range(n_train - 1):
         l = min(n_train - idx, seg_len)
         seg_time, seg_X, seg_Y = time_train[idx:idx + l], X_train[idx:idx + l], Y_train[idx:idx + l]
         train_domain_seg.append([seg_time, seg_X, seg_Y])
 
-    model = Koodos(data_set, time_train).to(device)
-    optimizer = torch.optim.Adam([{'params': model.shared_model.parameters(), 'lr': pred_learning_rate},
-                                  {'params': model.pred_model.parameters(), 'lr': pred_learning_rate},
-                                  {'params': model.encoder.parameters(), 'lr': coder_learning_rate},
-                                  {'params': model.decoder.parameters(), 'lr': coder_learning_rate},
-                                  {'params': model.odefunc.parameters(), 'lr': ode_learning_rate}])
+    # The last few segments are used for validation
+    n_seg, n_train_seg = len(train_domain_seg), len(train_domain_seg) - n_val_seg
+    idx_train_seg = np.arange(n_train_seg, dtype=np.int64)
+    idx_val_seg = np.arange(n_train_seg, n_seg, dtype=np.int64)
 
-    seg_num = len(train_domain_seg)
-    idx_train_seg = np.arange(seg_num - n_val_seg, dtype=np.int64)
-    idx_val_seg = np.arange(seg_num - n_val_seg, seg_num, dtype=np.int64)
+    # Initialization model-related
+    model = Koodos(data_set, time_train).to(device)
+    optimizer = torch.optim.Adam([{'params': model.shared_model.parameters(), 'lr': pred_learning_rate, 'weight_decay': weight_decay},
+                                  {'params': model.pred_model.parameters(), 'lr': pred_learning_rate, 'weight_decay': weight_decay},
+                                  {'params': model.encoder.parameters(), 'lr': coder_learning_rate, 'weight_decay': weight_decay},
+                                  {'params': model.decoder.parameters(), 'lr': coder_learning_rate, 'weight_decay': weight_decay},
+                                  {'params': model.dynamic.parameters(), 'lr': dyn_learning_rate, 'weight_decay': weight_decay}])
+
+    # Training
     min_val_loss = np.inf
     model.train()
     for e in range(epoch):
         epoch_loss = 0
-        for batch_idx in np.array_split(idx_train_seg, (seg_num - n_val_seg)//batch):
+
+        for batch_idx in np.array_split(idx_train_seg, n_train_seg // batch):
             loss = 0
             for idx in batch_idx:
                 seg_time, seg_X, seg_Y = train_domain_seg[idx]
-
                 init_pred, gene_pred, init_param, init_embed, init_debed, gene_param, gene_embed = model(seg_X, seg_time, idx)
 
+                # Calculate the loss
                 loss_intri, loss_integ = get_task_loss(data_set, seg_Y, init_pred, gene_pred)
                 loss_recon = F.mse_loss(init_param, init_debed)
                 loss_dyna = F.mse_loss(init_embed, gene_embed)
@@ -57,6 +61,7 @@ def trainModel(X_train, Y_train, time_train):
             optimizer.step()
             epoch_loss += loss.item()
 
+        # Validate generalization on the last few domain sequences
         val_loss = 0
         for idx in idx_val_seg:
             seg_time, seg_X, seg_Y = train_domain_seg[idx]
@@ -65,11 +70,12 @@ def trainModel(X_train, Y_train, time_train):
             val_loss = val_loss + loss_integ.item()
 
         if val_loss < min_val_loss:
-            # for saving IO time
+            # For saving IO time
             if e > epoch * 0.8:
                 min_val_loss = val_loss
                 torch.save(model.state_dict(), save_path + '/model.pt')
 
+        # Log
         print('Epoch: {}, Train Loss: {:.5f}, Val Loss: {:.5f}'.format(e, epoch_loss, val_loss))
         with open(save_path + '/log.txt', 'a') as f:
             f.write("{},{},{}\n".format(e, epoch_loss, val_loss))
@@ -86,7 +92,7 @@ def testModel(model, X_text, Y_test, time_test):
         final_time_test = torch.cat([last_time, time_test])
 
         last_embed = model.encoder(last_param)
-        test_embed = odeint(model.odefunc, last_embed, final_time_test, method=model.method, options={'step_size': model.step})[1:]
+        test_embed = odeint(model.dynamic, last_embed, final_time_test, method=model.method, options={'step_size': model.step})[1:]
         test_param = model.decoder(test_embed)
         X_text = [model.shared_model(x) for x in X_text]
         test_pred = model.generalized_model_pred(X_text, test_param)
@@ -106,7 +112,7 @@ def testModel(model, X_text, Y_test, time_test):
 
 def main():
     X, Y, time_points = dataset_preparation(data_set, data_path, device)
-    X_train, Y_train, time_train,  = X[:n_train], Y[:n_train], time_points[:n_train]
+    X_train, Y_train, time_train, = X[:n_train], Y[:n_train], time_points[:n_train]
     X_text, Y_test, time_test = X[n_train:], Y[n_train:], time_points[n_train:]
 
     model = trainModel(X_train, Y_train, time_train)
@@ -117,7 +123,7 @@ def main():
 ##################################################################################################
 parser = argparse.ArgumentParser(description='Set dataset and CUDA device.')
 parser.add_argument('--dataset', type=str, default='Moons', help='Name of the dataset.')
-parser.add_argument('--cuda', type=int, default=0, help='CUDA device number.')
+parser.add_argument('--cuda', type=int, default=1, help='CUDA device number.')
 args = parser.parse_args()
 
 device = torch.device(f'cuda:{args.cuda}' if torch.cuda.is_available() else 'cpu')
@@ -134,7 +140,8 @@ epoch = data_setting['epoch']
 batch = data_setting['batch']
 pred_learning_rate = data_setting['pred_learning_rate']
 coder_learning_rate = data_setting['coder_learning_rate']
-ode_learning_rate = data_setting['ode_learning_rate']
+dyn_learning_rate = data_setting['dyn_learning_rate']
+weight_decay = data_setting['weight_decay']
 
 alpha = data_setting['alpha']
 beta = data_setting['beta']
