@@ -123,7 +123,7 @@ def main():
 ##################################################################################################
 parser = argparse.ArgumentParser(description='Set dataset and CUDA device.')
 parser.add_argument('--dataset', type=str, default='Moons', help='Name of the dataset.')
-parser.add_argument('--cuda', type=int, default=1, help='CUDA device number.')
+parser.add_argument('--cuda', type=int, default=0, help='CUDA device number.')
 args = parser.parse_args()
 
 device = torch.device(f'cuda:{args.cuda}' if torch.cuda.is_available() else 'cpu')
