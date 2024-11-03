@@ -74,10 +74,10 @@ You can modify the hyperparameters by adjusting the ```param.py``` config file.
 If you find our work useful, please cite the following:
 
 ```  
-@article{cai2024continuous,
+@inproceedings{cai2024continuous,
   title={Continuous Temporal Domain Generalization},
   author={Cai, Zekun and Bai, Guangji and Jiang, Renhe and Song, Xuan and Zhao, Liang},
-  journal={arXiv preprint arXiv:2405.16075},
+  booktitle = {Advances in Neural Information Processing Systems},
   year={2024}
 }
 ```
