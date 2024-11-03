@@ -12,7 +12,7 @@ Koodos comprises three key components: 1) Describing the evolution of model para
 The code and instructions for reproducing the results are provided in this repository.
 
 <p align="center">
-  <img src="./figures/Illustration.png" width="790">
+  <img src="./figures/Illustration.png" width="800">
 </p>
 
 ## Table of Contents
@@ -41,6 +41,10 @@ The datasets used in this project can be downloaded from [Dataset Download Link]
 ## Quick Demo
 
 Before diving into the source code, we provide a Jupyter Notebook [Tutorial_for_Koodos](./Tutorial_for_Koodos.ipynb)  in this repository, **which provides a step-by-step guide to the Koodos framework and demonstrates its core functionality on a sample dataset to give you an intuitive understanding of how it works.**
+
+<p align="center">
+  <img src="./figures/demo.gif" width="800">
+</p>
 
 ## Usage
 
