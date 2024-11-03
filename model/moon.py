@@ -107,7 +107,8 @@ class dyna_f(nn.Module):
 #     def __init__(self):
 #         super(dyna_f, self).__init__()
 #         self.L = nn.Parameter(torch.randn((embed_dim, embed_dim)), requires_grad=True)
-
+#         torch.nn.init.xavier_uniform(self.L)
+#
 #     def forward(self, t, y):
 #         K = self.L - self.L.T
 #         return torch.matmul(y, K)
