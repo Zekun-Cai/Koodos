@@ -17,11 +17,11 @@ The code and instructions for reproducing the results are provided in this repos
 
 ## Table of Contents
 1. [Installation](#installation)
-2. [Quick Demo](#quick_demo)
+2. [Quick Demo](#quick-demo)
 3. [Usage](#usage)
 4. [Code Structure](#code-structure)
 5. [Citation](#citation)
-6. [Further Reading](#further_reading)
+6. [Further Reading](#further-reading)
 
 ---
 
@@ -40,9 +40,7 @@ The datasets used in this project can be downloaded from [Dataset Download Link]
 
 ## Quick Demo
 
-Before diving into the source code, we provide a Jupyter Notebook tutorial [Tutorial_for_Koodos](./Tutorial_for_Koodos.ipynb)  in this repository. It offers a step-by-step guide to understanding the Koodos framework, demonstrating its core functionality on a sample dataset.
-
-**This tutorial will walk you through the basic setup and provide an intuitive understanding of how Koodos works.**
+Before diving into the source code, we provide a Jupyter Notebook [Tutorial_for_Koodos](./Tutorial_for_Koodos.ipynb)  in this repository, **which provides a step-by-step guide to the Koodos framework and demonstrates its core functionality on a sample dataset to give you an intuitive understanding of how it works.**
 
 ## Usage
 
@@ -51,6 +49,8 @@ To train and test the model using the Koodos framework, follow this command:
 ```bash
 python main.py --dataset <dataset-name> --cuda <GPU-No.>
 ```
+
+Available Datasets: Moons; MNIST; Twitter; YearBook; Cyclone; House.
 
 You can modify the hyperparameters by adjusting the ```param.py``` config file.
 
