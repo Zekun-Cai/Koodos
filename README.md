@@ -2,7 +2,14 @@
 
 This repository contains the official code and datasets for the paper, "Continuous Temporal Domain Generalization", accepted by NeurIPS 2024.
 
+This study proposes a method capable of generating applicable neural networks at any given moment, based on observing domain data at random time points within a concept drift environment.
+
 Paper can be found here: [![Arxiv link](https://img.shields.io/static/v1?label=arXiv&message=CTDG&color=red&logo=arxiv)](https://arxiv.org/abs/2405.16075)
+
+<p align="center">
+  <img src="./figures/concept_1080.gif" width="600">
+</p>
+
 
 ## Abstract
 Temporal Domain Generalization (TDG) traditionally deals with training models on temporal domains collected at fixed intervals, limiting their ability to handle continuously evolving, irregular temporal domains. This work introduces Continuous Temporal Domain Generalization (CTDG) and presents Koodos, a model designed to address and optimize this challenge. 
