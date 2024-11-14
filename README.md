@@ -87,8 +87,9 @@ If you find our work useful, please cite the following:
 }
 ```
 
-## Further Reading
+## Related Reading
 [Temporal Domain Generalization with Drift-Aware Dynamic Neural Networks](https://openreview.net/pdf?id=sWOsRj4nT1n), in ICLR 2023.
+[MemDA: Forecasting Urban Time Series with Memory-based Drift Adaptation](https://arxiv.org/abs/2309.14216), in CIKM 2023.
 
 ## License
 
