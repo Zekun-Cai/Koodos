@@ -4,10 +4,13 @@
 
 <div align="center">
 
-**[<a href="https://arxiv.org/abs/2405.16075">Paper Page</a>]**
-**[<a href="https://openreview.net/forum?id=G24fOpC3JE">OpenReview</a>]**
-**[<a href="https://mp.weixin.qq.com/s/c2JjCB5bxRU7NgCELPLsdQ">中文解读</a>]**
+<a href="https://arxiv.org/abs/2405.16075"><img alt="Static Badge" src="https://img.shields.io/badge/PDF-Arxiv-red?style=flat&color=%23b12221"></a>
+<a href="https://neurips.cc/virtual/2024/poster/95933"><img alt="Static Badge" src="https://img.shields.io/badge/Pub-NeurIPS24-purple?style=flat&color=purple"></a>
+<a href="https://openreview.net/forum?id=G24fOpC3JE"><img alt="Static Badge" src="https://img.shields.io/badge/Review-OpenReview-blue?style=flat&color=%230077cc"></a>
+<a href="https://github.com/Yukayo/LoTNext/blob/main/LICENSE"><img alt="Static Badge" src="https://img.shields.io/badge/License-MIT-orange?style=flat"></a>
+<img src="https://badges.toozhao.com/badges/01JEGVGX082SC75NK1KYHDX15W/orange.svg" alt="Static Badge" />
 
+**[<a href="https://mp.weixin.qq.com/s/c2JjCB5bxRU7NgCELPLsdQ">中文解读</a>]**
 </div>
 
 This repository contains the official code and datasets for the paper, "Continuous Temporal Domain Generalization", accepted by NeurIPS 2024.
