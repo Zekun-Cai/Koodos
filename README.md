@@ -76,13 +76,13 @@ You can modify the hyperparameters by adjusting the ```param.py``` config file.
 ## Code Structure
 
 ```
-|-- data/                # Dataset Files
-|-- model/               # Dataset-specific Model Architectures (e.g., Moons, MNIST)
-|-- save/                # Folder to Store Model Outputs and Logs
-|-- param.py             # Configuration Files for Different Datasets
-|-- util.py              # Utility Functions
-|-- koodos.py            # Definition for Koodos
-|-- main.py              # Program Entry, Data Loading, Training, and Testing
+|-- data/                # Directory for dataset files
+|-- model/               # Directory for dataset-specific model architectures (e.g., Moons, MNIST)
+|-- save/                # Directory for storing model outputs and logs
+|-- param.py             # Configuration file for various datasets
+|-- util.py              # General utility functions file
+|-- koodos.py            # Core implementation of the Koodos framework
+|-- main.py              # Main program: handles data loading, training, and testing
 ```
 
 ## Citation
