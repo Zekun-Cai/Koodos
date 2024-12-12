@@ -10,7 +10,7 @@
 <a href="https://github.com/Yukayo/LoTNext/blob/main/LICENSE"><img alt="Static Badge" src="https://img.shields.io/badge/License-MIT-orange?style=flat"></a>
 <img src="https://badges.toozhao.com/badges/01JEGVGX082SC75NK1KYHDX15W/blue.svg" alt="Static Badge" />
 
-**[<a href="https://github.com/Zekun-Cai/Koodos-report">中文解读</a>]**
+**[<a href="https://mp.weixin.qq.com/s/LS9bMKOGmhMDVETMrxyh_Q">中文解读</a>]**
 </div>
 
 This repository contains the official code and datasets for the paper, "Continuous Temporal Domain Generalization", accepted by NeurIPS 2024.
