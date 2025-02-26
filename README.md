@@ -35,8 +35,9 @@ Koodos comprises three key components: 1) Describing the evolution of model para
 2. [Quick Demo](#quick-demo)
 3. [Usage](#usage)
 4. [Code Structure](#code-structure)
-5. [Citation](#citation)
-6. [Further Reading](#further-reading)
+5. [Note](#note)
+6. [Citation](#citation)
+7. [Related Reading](#related-reading)
 
 ---
 
@@ -84,6 +85,19 @@ You can modify the hyperparameters by adjusting the ```param.py``` config file.
 |-- koodos.py            # Core implementation of the Koodos framework
 |-- main.py              # Main program: handles data loading, training, and testing
 ```
+
+## Note
+
+We have further organized and improved the released code, resulting in enhanced performance. The updated results are as follows:
+
+| Model                | 2-Moons          | Rot-MNIST        | Twitter          | Yearbook         | Cyclone          | House            |
+|----------------------|------------------|------------------|------------------|------------------|------------------|------------------|
+| Koodos (Paper)   | 2.8 ± 0.7         | 4.6 ± 0.1        | 0.71 ± 0.02      | 6.6 ± 1.3        | 16.4 ± 0.3       | 9.0 ± 0.2         |
+| Koodos (Github)  | **1.9 ± 0.7**     | **3.3 ± 0.5**    | **0.71 ± 0.02**  | **5.2 ± 0.3**    | **16.0 ± 0.3**   | **8.9 ± 0.03**    |
+
+1. The running result files for the GitHub code can be found at the following link: [Results Link](https://drive.google.com/drive/folders/1X5NCH_6O7T8_B8F2Azg1UO0r9VQCLx68?usp=drive_link)  
+2. The calculation of the table can be viewed in the corresponding notebook: [Notebook](https://github.com/Zekun-Cai/Koodos/blob/main/save/results_summary.ipynb)  
+
 
 ## Citation
 If you find our work useful, please cite the following:
