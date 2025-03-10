@@ -107,6 +107,8 @@ If you find our work useful, please cite the following:
   title={Continuous Temporal Domain Generalization},
   author={Cai, Zekun and Bai, Guangji and Jiang, Renhe and Song, Xuan and Zhao, Liang},
   booktitle = {Advances in Neural Information Processing Systems},
+  pages = {127987--128014},
+  volume = {37},
   year={2024}
 }
 ```
